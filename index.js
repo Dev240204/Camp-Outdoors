@@ -2,7 +2,9 @@ const express = require('express');
 const path = require('path');
 const { title } = require('process');
 const Campground = require('./models/campground');
-const app = express();
+const mongoose = require('mongoose');
+
+mongoose.set('strictQuery',true);
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
     .then(()=>{
@@ -11,6 +13,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
     .catch(()=>{
         console.log("Error in Connecting Data Base");
     })
+
+const app = express();
 
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
