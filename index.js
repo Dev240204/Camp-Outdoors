@@ -3,7 +3,7 @@ const path = require('path');
 const Campground = require('./models/campground');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-const campground = require('./models/campground');
+const ejsMate = require('ejs-mate');
 
 mongoose.set('strictQuery',true);
 
@@ -20,6 +20,7 @@ const app = express();
 app.use(express.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
+app.engine('ejs', ejsMate);
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 
@@ -49,7 +50,7 @@ app.get('/campgrounds/:id',async (req,res)=>{
 })
 
 // To edit or Update Campground details
-app.get('/camgrounds/:id/edit',async (req,res)=>{
+app.get('/campgrounds/:id/edit',async (req,res)=>{
     const campground = await Campground.findById(req.params.id);
     res.render('campgrounds/edit',{campground});
 })
