@@ -5,6 +5,7 @@ const WrapAsync = require('../Utils/WrapAsync')
 const {CampgroundSchema } = require('../schemas');
 const Campground = require('../models/campground');
 
+// Middleware to validate the data
 const ValidateData = (req,res,next)=>{
     const {error} = CampgroundSchema.validate(req.body);
     if(error){
@@ -57,6 +58,7 @@ router.put('/:id',ValidateData,WrapAsync(async(req,res)=>{
     res.redirect(`/campgrounds/${campground._id}`);
 }))
 
+// To delete a Campground 
 router.delete('/:id',WrapAsync(async(req,res)=>{
     const {id} = req.params;
     const campground = await Campground.findByIdAndDelete(id);

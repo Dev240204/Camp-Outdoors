@@ -6,6 +6,7 @@ const WrapAsync = require('../Utils/WrapAsync')
 const {ReviewSchema} = require('../schemas');
 const Campground = require('../models/campground');
 
+// Middleware to validate the review data
 const ValidateReview = (req,res,next)=>{
     const {error} = ReviewSchema.validate(req.body);
     if(error){
@@ -16,11 +17,11 @@ const ValidateReview = (req,res,next)=>{
     }
 }
 
+// To create new Review
 router.get('/new',WrapAsync(async (req,res)=>{
     const campground = await Campground.findById(req.params.id);
     res.render('../reviews/new',{campground});
 }))
-
 router.post('/',ValidateReview,WrapAsync(async (req,res)=>{
     const campground = await Campground.findById(req.params.id);
     const review = new Review(req.body.review);
@@ -31,6 +32,7 @@ router.post('/',ValidateReview,WrapAsync(async (req,res)=>{
     res.redirect(`/campgrounds/${campground._id}`);
 }))
 
+// To delete a review
 router.delete('/:reviewId',WrapAsync(async (req,res)=>{
     const {id,reviewId} = req.params;
     await Campground.findByIdAndUpdate(id , {$pull: {reviews : reviewId}});
