@@ -2,7 +2,7 @@
 
     <h1 class="text-center mt-1">Campground Details</h1>
     <div class="row">
-        <div class="col-6 offset-3">
+        <div class="col-6">
             <div class="card my-3">
                 <div>
                     <img class="card-img-top" src="<%= campground.image %>" alt="<%= campground.title %>">
@@ -20,7 +20,24 @@
                     <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" class="d-inline">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
+                    <a href="/campgrounds/<%= campground._id %>/reviews/new" class="btn btn-warning">Add Review</a>
                 </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card my-3">
+                <h2 class="text-center mt-1">Reviews</h2>
+                <% for(let review of campground.reviews) { %>
+                    <div class="card m-2">
+                        <div class="card-body">
+                            <h5 class="card-title">Rating : <%= review.rating %> </h5>
+                            <p class="card-text">Review : <%= review.body %></p>
+                            <form action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                <% } %>
             </div>
         </div>
     </div>
