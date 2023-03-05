@@ -4,6 +4,7 @@ const ExpressError = require('../Utils/ExpressError')
 const WrapAsync = require('../Utils/WrapAsync')
 const {CampgroundSchema } = require('../schemas');
 const Campground = require('../models/campground');
+const {isLoggedIn} = require('../middleware');
 
 // Middleware to validate the data
 const ValidateData = (req,res,next)=>{
@@ -22,10 +23,10 @@ router.get('/',WrapAsync(async (req,res)=>{
     res.render('campgrounds/index',{campgrounds});
 }))
 // To create new Campground
-router.get('/new',(req,res)=>{
+router.get('/new',isLoggedIn,(req,res)=>{
     res.render('campgrounds/new');
 })
-router.post('/',ValidateData,WrapAsync(async (req,res)=>{
+router.post('/',isLoggedIn,ValidateData,WrapAsync(async (req,res)=>{
     const campground = new Campground(req.body.campground);
     await campground.save();
     req.flash('success','Successfully created a Campground');
@@ -33,7 +34,7 @@ router.post('/',ValidateData,WrapAsync(async (req,res)=>{
 }))
 
 // To display details of specific Campground
-router.get('/:id',WrapAsync(async (req,res)=>{
+router.get('/:id',isLoggedIn,WrapAsync(async (req,res)=>{
     const campground = await Campground.findById(req.params.id).populate('reviews');
     if(!campground){
         req.flash('error','Cannot find the Campground');
@@ -43,7 +44,7 @@ router.get('/:id',WrapAsync(async (req,res)=>{
 }))
 
 // To edit or Update Campground details
-router.get('/:id/edit',WrapAsync(async (req,res)=>{
+router.get('/:id/edit',isLoggedIn,WrapAsync(async (req,res)=>{
     const campground = await Campground.findById(req.params.id);
     if(!campground){
         req.flash('error','Cannot find the Campground');
@@ -51,7 +52,7 @@ router.get('/:id/edit',WrapAsync(async (req,res)=>{
     }
     res.render('campgrounds/edit',{campground});
 }))
-router.put('/:id',ValidateData,WrapAsync(async(req,res)=>{
+router.put('/:id',isLoggedIn,ValidateData,WrapAsync(async(req,res)=>{
     const {id} = req.params
     const campground = await Campground.findByIdAndUpdate(id,{...req.body.campground});
     req.flash('success','Successfully Updated a Campground');
@@ -59,7 +60,7 @@ router.put('/:id',ValidateData,WrapAsync(async(req,res)=>{
 }))
 
 // To delete a Campground 
-router.delete('/:id',WrapAsync(async(req,res)=>{
+router.delete('/:id',isLoggedIn,WrapAsync(async(req,res)=>{
     const {id} = req.params;
     const campground = await Campground.findByIdAndDelete(id);
     req.flash('success','Successfully Deleted a Campground');
