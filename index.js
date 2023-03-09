@@ -73,7 +73,7 @@ app.use('/campgrounds/:id/reviews',reviewsRoutes);
 
 // Home Page
 app.get('/',(req,res)=>{
-    res.render('campgrounds/home');
+    res.render('home');
 })
 
 // Error Page for Invalid Routes
