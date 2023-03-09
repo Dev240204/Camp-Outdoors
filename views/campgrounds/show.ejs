@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') -%>
-
+<link rel="stylesheet" href="/stylesheet/stars.css">
     <h1 class="text-center mt-1">Campground Details</h1>
     <div class="row">
         <div class="col-6">
@@ -13,15 +13,22 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-muted"><%= campground.location %></li>
+                    <li class="list-group-item">Campground by <%= campground.author.username %></li>
                     <li class="list-group-item"><%= campground.price %></li>
                 </ul>
-                <div class="card-body">
-                    <a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-primary">Edit</a>
-                    <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" class="d-inline">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                    <a href="/campgrounds/<%= campground._id %>/reviews/new" class="btn btn-warning">Add Review</a>
-                </div>
+                <% if(currentUser) {%>
+                    <div class="card-body">
+                        <%if (currentUser && currentUser._id.equals(campground.author._id)) { %>
+                            <a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-primary">Edit</a>
+                            <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        <% } %>
+                        <% if(currentUser) {%>
+                        <a href="/campgrounds/<%= campground._id %>/reviews/new" class="btn btn-warning">Add Review</a>
+                        <% } %>
+                    </div>
+                <% } %>
             </div>
         </div>
         <div class="col-6">
@@ -30,11 +37,16 @@
                 <% for(let review of campground.reviews) { %>
                     <div class="card m-2">
                         <div class="card-body">
-                            <h5 class="card-title">Rating : <%= review.rating %> </h5>
+                            <p class="starability-result" data-rating="<%= review.rating %>">
+                                Rated: <%= review.rating %> stars
+                            </p>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= review.author.username %></h6>
                             <p class="card-text">Review : <%= review.body %></p>
-                            <form action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </form>
+                            <% if(currentUser && currentUser._id.equals(review.author._id)) { %>
+                                <form action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            <% } %>
                         </div>
                     </div>
                 <% } %>
