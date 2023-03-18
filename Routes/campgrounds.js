@@ -30,14 +30,6 @@ router.post(
   upload.array("image"),
   WrapAsync(campgrounds.createCampground)
 );
-router.post(
-  "/",
-  upload.single("image"),
-  (req, res) => {
-    console.log(req.body, req.file);
-    res.send("Worked!!");
-  }
-);
 
 // To display details of specific Campground
 router.get(
@@ -56,7 +48,8 @@ router.put(
   "/:id",
   isLoggedIn,
   isAuthor,
-  ValidateData,
+  upload.array("image"),
+  // ValidateData,
   WrapAsync(campgrounds.updateCampground)
 );
 
