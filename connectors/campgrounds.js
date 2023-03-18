@@ -15,7 +15,12 @@ module.exports.renderNewForm = (req,res)=>{
 module.exports.createCampground = async (req,res)=>{
     const campground = new Campground(req.body.campground);
     const geodata = await axios.get(`https://nominatim.openstreetmap.org/search?q=${req.body.campground.location}&format=geojson`)
-    campground.geometry = geodata.data.features[0].geometry;
+    if(geodata.data.features.length !== 0){
+        campground.geometry = geodata.data.features[0].geometry;
+    }else{
+        req.flash('error','Invalid Location Entered')
+        res.redirect("/campgrounds/new")
+    }
     campground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     campground.author = req.user._id;
     await campground.save();
@@ -60,7 +65,6 @@ module.exports.updateCampground = async(req,res)=>{
         }
         await campground.updateOne({$pull :{images :{filename : {$in : req.body.DeleteImages}}}})
     }
-
     req.flash('success','Successfully Updated a Campground');
     res.redirect(`/campgrounds/${campground._id}`);
 }
