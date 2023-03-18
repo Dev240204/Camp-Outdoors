@@ -4,23 +4,25 @@
     <div class="row">
         <div class="col-6">
             <div class="card my-3">
-                <div id="campgroundCarousel" class="carousel slide" data-ride="carousel">
+                <div id="campgroundCarousal" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <% campground.images.forEach((img, i) => {  %>
-                        <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
-                            <img src="<%= img.url%>" class="d-block w-100" alt="">
-                        </div>
-                        <% }) %>
+                    <% campground.images.forEach((img,i) => { %>
+                      <div class="carousel-item <%= i===0 ? 'active' : '' %>">
+                        <img src="<%= img.url %>" class="d-block w-100" alt="">
+                      </div>
+                    <% })  %>
                     </div>
-                    <% if(campground.images.length > 1) {%>
-                        <a class="carousel-control-prev" href="#campgroundCarousel" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <% if(campground.images.length > 1){ %>
+                        <a class="carousel-control-prev" type="button" data-bs-target="#campgroundCarousal" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#campgroundCarousel" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <a class="carousel-control-next" type="button" data-bs-target="#campgroundCarousal" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
                         </a>
                     <% } %>
-                </div>
+                  </div>
                 <div class="card-body">
                     <h2><%= campground.title %></h2>
                     <p><%= campground.description %></p>
