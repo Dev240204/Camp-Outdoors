@@ -1,4 +1,6 @@
+const { cloudinary } = require('../Cloudinary');
 const Campground = require('../models/campground');
+const axios = require("axios"); 
 
 //Index page to display all the campgrounds
 module.exports.campgroundIndex = async (req,res)=>{
@@ -12,10 +14,11 @@ module.exports.renderNewForm = (req,res)=>{
 }
 module.exports.createCampground = async (req,res)=>{
     const campground = new Campground(req.body.campground);
+    const geodata = await axios.get(`https://nominatim.openstreetmap.org/search?q=${req.body.campground.location}&format=geojson`)
+    campground.geometry = geodata.data.features[0].geometry;
     campground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     campground.author = req.user._id;
     await campground.save();
-    console.log(campground);
     req.flash('success','Successfully created a Campground');
     res.redirect(`/campgrounds/${campground._id}`);
 }
@@ -46,7 +49,18 @@ module.exports.renderEditForm = async (req,res)=>{
 }
 module.exports.updateCampground = async(req,res)=>{
     const {id} = req.params
+    console.log(req.body)
     const campground = await Campground.findByIdAndUpdate(id,{...req.body.campground});
+    const images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    campground.images.push(...images)
+    await campground.save();
+    if(req.body.DeleteImages){
+        for(let filename of req.body.DeleteImages){
+            await cloudinary.uploader.destroy(filename)
+        }
+        await campground.updateOne({$pull :{images :{filename : {$in : req.body.DeleteImages}}}})
+    }
+
     req.flash('success','Successfully Updated a Campground');
     res.redirect(`/campgrounds/${campground._id}`);
 }
