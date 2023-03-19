@@ -49,8 +49,7 @@ router.put(
   isLoggedIn,
   isAuthor,
   upload.array("image"),
-  // Error can't see images on edit page 
-  // ValidateData,
+  ValidateData,
   WrapAsync(campgrounds.updateCampground)
 );
 
