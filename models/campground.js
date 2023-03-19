@@ -12,10 +12,10 @@ const ImageSchema = new Schema({
         required : true
     }
 })
-ImageSchema.virtual("thumbnail").get(function (){
-    return this.url.replace('/upload','/upload/w_200');
-})
-
+// ImageSchema.virtual("thumbnail").get(function (){
+//     return this.url.replace('/upload','/upload/w_200');
+// })
+const opts = { toJSON : { virtuals : true }};
 const CampgroundSchema = new Schema ({
     title : {
         type : String,
@@ -53,8 +53,10 @@ const CampgroundSchema = new Schema ({
             ref : "Review"
         }
     ]
-});
-
+},opts);
+CampgroundSchema.virtual("properties.popUp").get(function (){
+    return `<a href="/campgrounds/${this._id}">${this.title}</a>`
+})
 CampgroundSchema.post('findOneAndDelete',async function(data){
     if(data){
         await Review.remove({
@@ -64,5 +66,4 @@ CampgroundSchema.post('findOneAndDelete',async function(data){
         })
     }
 })
-
 module.exports = mongoose.model('Campground',CampgroundSchema);
