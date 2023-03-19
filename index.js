@@ -12,6 +12,7 @@ const flash = require("connect-flash");
 const User = require("./models/user");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const mongoSanitize = require("express-mongo-sanitize");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -38,17 +39,18 @@ app.set("views", path.join(__dirname, "views"));
 // Express Setup for Parsing and Serving Static Files
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.use(
-  express.static(path.join(__dirname, "public"))
-);
+app.use(express.static(path.join(__dirname, "public")));
+app.use(mongoSanitize());
 
 // Session Setup for Flash Messages and Authentication
 const sessionConfig = {
+  name : 'session',
   secret: "thisisConfig",
   resave: false,
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
+    // secure : true
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
@@ -59,9 +61,7 @@ app.use(flash());
 // Passport Setup for Authentication
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(
-  new LocalStrategy(User.authenticate())
-);
+passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
