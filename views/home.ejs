@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.carousel.min.css" />
     <link rel="stylesheet" href="/stylesheet/home.css">
     <title>Yelp-Camp</title>
 </head>
@@ -22,8 +23,7 @@
                             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                                 <div class="navbar-nav">
                                     <a class="nav-link" href="/">Home</a>
-                                    <a class="nav-link" href="/">Features</a>
-                                    <a class="nav-link" href="/campgrounds/new">New Campground</a>
+                                    <a class="nav-link" href="#features">Features</a>
                                 </div>
                             </div>
                             <% if(!currentUser) {%>
@@ -87,22 +87,81 @@
                     </div>
                   </div>
                 </div>
-                <div class="guide-card">
-                  <div class="guide-card-body">
-                    <div class="guide-card-title">
-                      <h1 class="card-title"><b>Feeling Lost</b> And Not Knowing The Way? </h1>
+              </div>
+              <div class="guide-card">
+                <div class="guide-card-body">
+                  <div class="guide-card-title">
+                    <h1 class="card-title"><b>Feeling Lost</b> And Not Knowing The Way? </h1>
+                  </div>
+                  <div class="guide-card-text">
+                    <small class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex non odio dolor consequuntur. Laborum quia deserunt ullam! Eos quod facere fuga voluptas molestias provident voluptates aspernatur repudiandae amet doloremque sunt, magni reprehenderit dolorum officiis ratione laudantium, eveniet asperiores? Tempore tempora quisquam consequuntur dignissimos error, vero non inventore explicabo cum expedita.
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <img src="https://images.unsplash.com/photo-1486915309851-b0cc1f8a0084?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fG5pZ2h0JTIwY2FtcGluZyUyMGltYWdlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" class="feature-img d-block w-100" alt="...">
+              <div id="features" class="features">
+                <div class="feature-title">
+                  <h1>Our Features</h1>
+                </div>
+                <div class="feature-list">
+                  <div class="feature-card">
+                    <div class="card-body">
+                      <h5 class="feature-card-title">Lorem ipsum dolor sit amet.</h5>
+                      <small class="feature-card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</small>
                     </div>
-                    <div class="guide-card-text">
-                      <small class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex non odio dolor consequuntur. Laborum quia deserunt ullam! Eos quod facere fuga voluptas molestias provident voluptates aspernatur repudiandae amet doloremque sunt, magni reprehenderit dolorum officiis ratione laudantium, eveniet asperiores? Tempore tempora quisquam consequuntur dignissimos error, vero non inventore explicabo cum expedita.
-                      </small>
+                  </div>
+                  <div class="feature-card">
+                    <div class="card-body">
+                      <h5 class="feature-card-title">Lorem ipsum dolor sit amet.</h5>
+                      <small class="feature-card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</small>
+                    </div>
+                  </div>
+                  <div class="feature-card">
+                    <div class="card-body">
+                      <h5 class="feature-card-title">Lorem ipsum dolor sit amet.</h5>
+                      <small class="feature-card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</small>
+                    </div>
+                  </div>
+                  <div class="feature-card">
+                    <div class="card-body">
+                      <h5 class="feature-card-title">Lorem ipsum dolor sit amet.</h5>
+                      <small class="feature-card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</small>
                     </div>
                   </div>
                 </div>
-                <div class=""></div>
-        </div>
-    </div>
-
+              </div>
+              <div class="owner-card">
+                <div class="owner-card-body">
+                  <div class="owner-card-title">
+                    <h1 class="card-title"><b>Want to be a Owner</b> Find how you can do it! </h1>
+                  </div>
+                  <div class="owner-card-text">
+                    <small class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex non odio dolor consequuntur. Laborum quia deserunt ullam! Eos quod facere fuga voluptas molestias provident voluptates aspernatur repudiandae amet doloremque sunt, magni reprehenderit dolorum officiis ratione laudantium, eveniet asperiores? Tempore tempora quisquam consequuntur dignissimos error, vero non inventore explicabo cum expedita.
+                    </small>
+                  </div>
+                    <a class="btn owner-card-btn" href="/campgrounds/new">Create Campground</a>
+                </div>
+              </div>
+              <div class="footer">
+                <div class="about">
+                  <div class="about-card">
+                    <div class="about-card-body">
+                      <h5 class="about-card-title">About</h5>
+                      <div class="about-list">
+                        <li class="about-list-group-item">An item</li>
+                        <li class="about-list-group-item">A second item</li>
+                        <li class="about-list-group-item">A third item</li>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-</body>
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+  </body>
 </html>

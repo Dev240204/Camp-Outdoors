@@ -1,0 +1,47 @@
+body{
+    box-sizing: border-box;
+}
+.container{
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+}
+#map{
+    margin-top: 5px;
+    margin-left:-12% ;
+    width: 100vw;
+    height: 600px;
+}
+.title{
+    margin: 10px
+}
+.middle-body-upper-text{
+    font-size: 20px;
+    margin: 40px 0 10px 0;
+}
+.middle-body-lower-text{
+    font-size: 40px;
+    margin: 0 0 10px 0;
+}
+.campground-card{
+    margin: 35px 10px;
+    display: flex;
+}
+.campground-img-right{
+    margin-left: auto;
+    width: 500px;
+}
+.campground-img-left{
+    margin-right: auto;
+    width: 500px;
+}
+.campground-content-right{
+    width: 45%;
+    margin-left: auto;
+    text-align: center;
+}
+.campground-content-left{
+    width: 45%;
+    margin-right: auto;
+    text-align: center;
+}
