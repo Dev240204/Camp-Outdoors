@@ -1,0 +1,117 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+.upper-container{
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url("./HD\ wallpaper_\ tent\,\ camping\,\ milky\ way\,\ reflection\,\ starry\,\ night\ sky\,\ starry\ night.jpeg");
+    background-position: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+}
+.cover-container{
+    margin: 0 auto;
+    width: 85vw;
+}
+.logo{
+    margin: 15px;
+    padding-left: 20px;
+    font-size: larger;
+}
+.nav-item{
+    margin: 15px;
+    padding-right: 20px;
+}
+.nav-link:hover{
+    color: aliceblue;
+    text-shadow: 0 0 5px rgb(103, 70, 12);
+}
+.nav-link{
+    color: white;
+}
+.upper-body{
+    display: flex;
+    margin-top: 150px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    height: 80%;
+    width: 60vw;
+    margin:auto;
+}
+.upr-body-text{
+    margin: 0 auto 30px 40px;
+}
+.upr-body-btn{
+    background-color: rgba(255, 166, 0, 0.1);
+    color: black;
+    width: 18%;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 0 2px white;
+    padding: 7px;
+    margin: 30px 100px 0 auto;
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+}
+.upr-body-btn:hover{
+    background-color: rgba(255, 166, 0, 0.4);
+    color: rgb(247, 246, 246);
+    box-shadow: 0 0 5px white;
+}
+.middle-container{
+    margin: 40px 5px;
+}
+.middle-body{
+    margin-left: 40px;
+}
+.middle-body-upper-text{
+    font-size: 20px;
+    margin: 70px 0 10px 0;
+}
+.middle-body-lower-text{
+    font-size: 40px;
+    margin: 0 0 30px 0;
+}
+.car-img{
+    height: 400px;
+    border-radius: 20px;
+}
+.middle-card{
+    width: 35%;
+    height: 77%;
+    position: absolute;
+    right: 10%;
+    top: 55%;
+    border-radius: 20px;
+    background-color: rgba(30, 30, 255, 1);
+    color: aliceblue;
+}
+.middle-card-body{
+    padding: 35px;
+}
+.middle-card-text{
+    font-size: 11px;
+}
+.middle-card-title{
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+.guide-card{
+    position: absolute;
+    top: 130%
+}
+.guide-card-title{
+    width: 40%;
+    margin: 20px 60px;
+}
+.guide-card-text{
+    width: 55%;
+    position: absolute;
+    top : 15%;
+    right: -40%;
+    font-size: 13px;
+}
