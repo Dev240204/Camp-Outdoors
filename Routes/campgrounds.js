@@ -14,6 +14,7 @@ const upload = multer({ storage });
 //Index page to display all the campgrounds
 router.get(
   "/",
+  isLoggedIn,
   WrapAsync(campgrounds.campgroundIndex)
 );
 
