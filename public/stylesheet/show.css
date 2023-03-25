@@ -1,0 +1,35 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+.map{
+    margin: 2% 20px;
+    width: 100%;
+    height: 430px;
+}
+#map{
+    width: 100%;
+    height: 430px;
+}
+.campground{
+    display: flex;
+    flex-direction: column;
+}
+.campground-detail{
+    display: flex;
+    flex-direction: row;
+}
+.campground-card{
+    margin: 25px 20px;
+}
+.campground-img{
+    width: 100%;
+}
+.campground-list{
+    margin: 20px;
+}
+.campground-user-review-card{
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
