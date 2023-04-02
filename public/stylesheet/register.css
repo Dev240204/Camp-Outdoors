@@ -11,14 +11,14 @@ body{
     background-color: rgba(83, 230, 230, 0.2);
     display: flex;
     flex-direction: row;
-    box-shadow: 0 0 2px black;
+    box-shadow: 0 0 4px black;
     height: 90vh;
     padding: 0;
 }
-.login-card-container{
+.register-card-container{
     display: flex;
     flex-direction: column;
-    margin: 13% auto 0 0;
+    margin: 10% auto 0 0;
     padding: 0 0 0 10px;
     width: 50%;
     height: 90vh;
@@ -34,15 +34,14 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
-.login-title{
-    margin: 0px auto 10px 15%;
+.register-title{
+    margin: 0px 45% 10px auto;
 }
-.login-card{
-    margin: 0px auto 30px 15%;
+.register-card{
+    margin: 0px 20% 10px auto;
     display: flex;
     flex-direction: column;
 }
-.login-btn{
-    background-color: green;
+.register-btn{
     width: 100%;
 }
