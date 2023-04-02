@@ -1,35 +1,75 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
-.map{
+.map {
+  margin: 2% 20px;
+  width: 100%;
+  box-shadow: 0 0 2px black;
+}
+#map {
+  width: 600px;
+  height: 450px;
+}
+.campground {
+  display: flex;
+  flex-direction: column;
+}
+.campground-detail {
+  display: flex;
+  flex-direction: row;
+}
+.campground-card {
+    display: flex;
+    flex-direction: column;
     margin: 2% 20px;
     width: 100%;
-    height: 430px;
+    box-shadow: 0 0 2px black;
 }
-#map{
-    width: 100%;
-    height: 430px;
+.campground-img {
+    width: 600px;
+  height: 450px;
 }
-.campground{
+.campground-list {
+    margin: 10px;
+}
+.campground-card-btn{
+    margin: 10px;
+    display: flex;
+}
+.campground-edit-btn{
+    width: 280px;
+    margin-right: 10px;
+}
+.campground-delete-btn{
+    width: 280px;
+    margin-left: 10px;
+}
+.campground-review-card{
     display: flex;
     flex-direction: column;
 }
-.campground-detail{
+.campground-user-review-card {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 20px;
+  overflow: scroll;
+  height: 200px;
+  border: 1px solid rgb(233, 229, 229);
+  padding: 10px;
+}
+.campground-review-card-box{
+    height: 170px;
+    margin: 10px;
+}
+.review-card-body{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
-.campground-card{
-    margin: 25px 20px;
-}
-.campground-img{
+.review-delete-btn{
     width: 100%;
 }
-.campground-list{
-    margin: 20px;
-}
-.campground-user-review-card{
-    display: flex;
-    flex-direction: row;
-    margin: 20px;
+.review-btn{
+    width: 10%;
+    margin: 20px 20px 20px auto;
 }
