@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -13,15 +16,14 @@ const User = require("./models/user");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const mongoSanitize = require("express-mongo-sanitize");
-
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+const MongoStore = require('connect-mongo');
+const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/yelp-camp"
 
 // Mongoose Setup for Data Base Connection and Error Handling
+
 mongoose.set("strictQuery", true);
 mongoose
-  .connect("mongodb://127.0.0.1:27017/yelp-camp")
+  .connect(dbUrl)
   .then(() => {
     console.log("Data base Connection Open!!");
   })
@@ -43,9 +45,24 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(mongoSanitize());
 
 // Session Setup for Flash Messages and Authentication
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
+
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+      secret
+  }
+});
+
+store.on('error',function(e){
+  console.log("Session Store Error",e)
+})
+
 const sessionConfig = {
+  store,
   name : 'session',
-  secret: "thisisConfig",
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -77,10 +94,7 @@ app.use((req, res, next) => {
 // Routes for Campgrounds and Reviews
 app.use("/", userRoutes);
 app.use("/campgrounds", campgroundsRoutes);
-app.use(
-  "/campgrounds/:id/reviews",
-  reviewsRoutes
-);
+app.use("/campgrounds/:id/reviews",reviewsRoutes);
 
 // Home Page
 app.get("/", (req, res) => {

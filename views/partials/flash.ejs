@@ -1,12 +1,21 @@
 <% if(success && success.length) { %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show" id="success-flash" role="alert">
         <%= success %>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-<% } %> 
-<% if(error && error.length) { %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%= error %>
+    <% } %> 
+    <% if(error && error.length) { %>
+    <div class="alert alert-danger alert-dismissible fade show" id="error-flash" role="alert">
+            <%= error %>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <% } %> 
+
+<script>
+    setTimeout(() => {
+        document.getElementById("error-flash").style.display="none";
+    },1000)
+    setTimeout(() => {
+        document.getElementById("success-flash").style.display="none";
+    },1000)
+</script>

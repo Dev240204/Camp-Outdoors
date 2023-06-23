@@ -10,23 +10,15 @@
             <% campgrounds.forEach((campground,i) => {%>
                 <div class="campground-card" mb-3>
                     <% if(i%2==0) { %>
-                        <div class="campground-image">
-                            <% if (campground.images.length) { %>
-                                <img src="<%= campground.images[0].url %>" alt="campground image" class="campground-img-left">
-                            <% }else { %>
-                                <img src="https://res.cloudinary.com/dchlc6jte/image/upload/v1678601135/YelpCamp/yqwcvm2n4pnibjqp13ns.jpg" alt="campground image" class="campground-img-left">  
-                            <% } %>
-                        </div>
-                        <div class="campground-content-right">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= campground.title %></h5>
-                                <p class="card-text"><%= campground.description %></p>
-                                <p class="card-text text-muted"><%= campground.location %></p>
-                                <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View Campground</a>
+                        <div class="campground-body">
+                            <div class="campground-image">
+                                <% if (campground.images.length) { %>
+                                    <img src="<%= campground.images[0].url %>" alt="campground image" class="campground-img-left">
+                                <% }else { %>
+                                    <img src="https://res.cloudinary.com/dchlc6jte/image/upload/v1678601135/YelpCamp/yqwcvm2n4pnibjqp13ns.jpg" alt="campground image" class="campground-img-left">  
+                                <% } %>
                             </div>
-                        </div>
-                        <% }else { %>
-                            <div class="campground-content-left">
+                            <div class="campground-content-right">
                                 <div class="card-body">
                                     <h5 class="card-title"><%= campground.title %></h5>
                                     <p class="card-text"><%= campground.description %></p>
@@ -34,12 +26,24 @@
                                     <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View Campground</a>
                                 </div>
                             </div>
-                            <div class="campground-image">
-                                <% if (campground.images.length) { %>
-                                    <img src="<%= campground.images[0].url %>" alt="campground image" class="campground-img-right">
-                                <% }else { %>
-                                    <img src="https://res.cloudinary.com/dchlc6jte/image/upload/v1678601135/YelpCamp/yqwcvm2n4pnibjqp13ns.jpg" alt="campground image" class="campground-img-right">  
-                                <% } %>
+                        </div>
+                        <% }else { %>
+                            <div class="campground-body">
+                                <div class="campground-content-left">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= campground.title %></h5>
+                                        <p class="card-text"><%= campground.description %></p>
+                                        <p class="card-text text-muted"><%= campground.location %></p>
+                                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View Campground</a>
+                                    </div>
+                                </div>
+                                <div class="campground-image">
+                                    <% if (campground.images.length) { %>
+                                        <img src="<%= campground.images[0].url %>" alt="campground image" class="campground-img-right">
+                                    <% }else { %>
+                                        <img src="https://res.cloudinary.com/dchlc6jte/image/upload/v1678601135/YelpCamp/yqwcvm2n4pnibjqp13ns.jpg" alt="campground image" class="campground-img-right">  
+                                    <% } %>
+                                </div>
                             </div>
                         <% } %>
                 </div>

@@ -27,13 +27,21 @@ body{
     margin: 35px 10px;
     display: flex;
 }
+.campground-body{
+    display: flex;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 6px black;
+}
 .campground-img-right{
     margin-left: auto;
     width: 500px;
+    border-radius: 10px;
 }
 .campground-img-left{
     margin-right: auto;
     width: 500px;
+    border-radius: 10px;
 }
 .campground-content-right{
     width: 45%;
