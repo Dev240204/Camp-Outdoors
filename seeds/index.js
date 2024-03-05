@@ -1,11 +1,19 @@
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+  }
 const Campground = require('../models/campground');
 const cities = require('./cities');
 const {places,descriptors} = require('./seedHelpers');
 const mongoose = require('mongoose');
+const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/yelp-camp"
 
 mongoose.set('strictQuery',true);
+const options ={
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
 
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
+mongoose.connect(dbUrl,options)
     .then(()=>{
         console.log("Data base Connection Open!!");
     })
@@ -21,7 +29,7 @@ const seedDb = async() =>{
         const random400 = Math.floor(Math.random()*400);
         const price = Math.floor(Math.random()*10000)+1000;
         const camp = new Campground({
-            author : '640344956fd253c6dfcb9f2d',
+            author : '64c12224e1cffba6b17d82cb',
             location : `${cities[random400].city},${cities[random400].state}`,
             title : `${sample(descriptors)} ${sample(places)}`,
             description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate enim, ex, similique, maxime sunt ullam aperiam quo alias hic ut quam libero ducimus rem et? Perferendis aliquam voluptates consequatur atque!',
@@ -32,12 +40,12 @@ const seedDb = async() =>{
              ] },
             images: [
                 {
-                  url: 'https://res.cloudinary.com/dchlc6jte/image/upload/v1680157294/YelpCamp/yhwbnazdsxobxfut2cwm.jpg',
-                  filename: 'YelpCamp/yhwbnazdsxobxfut2cwm',
+                  url: 'https://res.cloudinary.com/dchlc6jte/image/upload/v1699507945/YelpCamp/3_kypgyn.jpg',
+                  filename: 'YelpCamp/3_kypgyn.jpg',
                 },
                 {
-                  url: 'https://res.cloudinary.com/dchlc6jte/image/upload/v1687425833/YelpCamp/t9t5erc1xvhudd2gcqvi.jpg',
-                  filename: 'YelpCamp/t9t5erc1xvhudd2gcqvi',
+                  url: 'https://res.cloudinary.com/dchlc6jte/image/upload/v1699507936/YelpCamp/2_q9vkys.webp',
+                  filename: 'YelpCamp/2_q9vkys',
                 }
               ]
         })

@@ -10,6 +10,16 @@
     width: 85vw;
 }
 .logo{
+    margin: 15px;
+    padding-left: 20px;
+    font-size: larger;
+    text-decoration: none;
+    color: blue;
+}
+.logo:hover{
+    color: rgb(160, 210, 254);
+}
+.logo{
     margin: 5px;
     padding-left: 20px;
     font-size: larger;

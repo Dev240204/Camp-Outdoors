@@ -22,8 +22,14 @@ const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/yelp-camp"
 // Mongoose Setup for Data Base Connection and Error Handling
 
 mongoose.set("strictQuery", true);
+
+const options ={
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}
+
 mongoose
-  .connect(dbUrl)
+  .connect(dbUrl,options)
   .then(() => {
     console.log("Data base Connection Open!!");
   })
@@ -119,3 +125,5 @@ const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+module.exports = app

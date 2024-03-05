@@ -19,6 +19,11 @@
     margin: 15px;
     padding-left: 20px;
     font-size: larger;
+    text-decoration: none;
+    color: white;
+}
+.logo:hover{
+    color: aliceblue;
 }
 .nav-item{
     margin: 15px;

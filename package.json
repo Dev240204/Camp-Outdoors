@@ -1,7 +1,7 @@
 {
-  "name": "crudapp",
+  "name": "camping",
   "version": "1.0.0",
-  "description": "Crud app using express and mongoDb",
+  "description": "Explore Camping places around the world",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
